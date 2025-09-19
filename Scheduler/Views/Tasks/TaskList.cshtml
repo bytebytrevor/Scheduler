@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<Scheduler.Models.Entities.TaskItem>
+
+<h1>Tasks</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var taskItem in Model)
+        {
+            <tr class="@(taskItem.Complete ? "bg-success" : "bg-light")">
+                <td class="@(taskItem.Complete ? "bg-success" : "bg-danger") text-light">@taskItem.Id</td>
+                <td class="@(taskItem.Complete ? "bg-success" : "bg-danger") text-light">@taskItem.Name</td>
+                <td class="@(taskItem.Complete ? "bg-success" : "bg-danger") text-light">@taskItem.Description</td>
+                <td class="@(taskItem.Complete ? "bg-success" : "bg-danger") text-light">@taskItem.DueDate</td>
+                <td>
+                    <a class="btn btn-primary" asp-contoller="Tasks" asp-action="EditTask"
+                        asp-route-id="@taskItem.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
